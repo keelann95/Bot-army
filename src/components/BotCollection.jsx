@@ -1,8 +1,14 @@
 // import React from 'react'
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const BotCollection = () => {
-
+  const [bots, setBots] = useState([])
+  
+  useEffect(() => {
+    fetch("http://localhost:3000/bots")
+      .then(res => res.json())
+      .then((bots) => setBots(bots))
+  }, [bots])
 
   return (
     <div className=" flex  flex-wrap justify-evenly  min-h-screen bg-gray-100 p-4 gap-[6px]">
