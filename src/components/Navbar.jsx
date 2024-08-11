@@ -12,6 +12,10 @@ const Navbar = () => {
       <NavLink  className=' hover:text-white' to={'/botCollection'}>Collection</NavLink>
 
       </div>
+
+      <div>
+      <NavLink className=' hover:text-white'  to={'/yourBotArmy'}>My Bots</NavLink>
+      </div>
     </div>
   )
 }

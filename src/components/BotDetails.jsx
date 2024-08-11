@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const BotDetails = () => {
-    const [bot, setBot] = useState(null)
+    const [bot, setBot] = useState([])
     const { id } = useParams();
 
     useEffect(() => {
@@ -54,7 +54,10 @@ const BotDetails = () => {
                         </div>
                     </div>
                 </div>
-                <button></button>
+                <div>
+                    
+                <Link className=' flex  pb-4  justify-end pr-8 '><button className=' bg-gray-500 rounded-xl pr-9 pl-9'>ADD</button></Link>
+                </div>
             </div>
         </div>
     )
