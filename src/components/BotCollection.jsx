@@ -1,5 +1,6 @@
 // import React from 'react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const BotCollection = () => {
   const [bots, setBots] = useState([])
@@ -11,10 +12,10 @@ const BotCollection = () => {
   }, [bots])
 
   return (
-    <div className=" flex  flex-wrap justify-evenly  min-h-screen bg-gray-100 p-4 gap-[6px]">
+    <div className=" flex  flex-wrap justify-evenly  min-h-screen bg-gray-100 p-2 gap-[8px]">
       {bots.map(bot =>(
         <> 
-      <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+      <div key={bot.id} className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
       <img 
         className="w-full" 
         src={bot.avatar_url}
@@ -23,9 +24,9 @@ const BotCollection = () => {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{bot.name}</div>
         <p className="text-gray-700 text-base mb-2">{bot.bot_class}</p>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+       <Link to={`/bots/${bot.id}`}> <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           more
-        </button>
+        </button></Link>
       </div>
     </div>
     </>
