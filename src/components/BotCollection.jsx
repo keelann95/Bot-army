@@ -6,7 +6,7 @@ const BotCollection = () => {
   const [bots, setBots] = useState([])
   
   useEffect(() => {
-    fetch("http://localhost:3000/bots")
+    fetch("https://army-bot-backend.vercel.app/bots")
       .then(res => res.json())
       .then((bots) => setBots(bots))
   }, [bots])
