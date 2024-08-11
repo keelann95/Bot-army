@@ -1,33 +1,63 @@
-import  { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 const BotDetails = () => {
-
-    const [bots, setBots] = useState([])
-
+    const [bot, setBot] = useState(null)
     const { id } = useParams();
 
     useEffect(() => {
       fetch(`http://localhost:3000/bots/${id}`)
         .then((res) => res.json())
-        .then((bots) => setBots(bots))
+        .then((data) => setBot(data))
         .catch((error) => console.log(error));
     }, [id]);
 
-  return (
-    <div>
-      <h1>Bot Details</h1>
-      <hr />
-      <img src={bots.avatar_url} alt={bots.name} />
-      <h1>Name: {bots.name}</h1>
-      <h3>Class: {bots.bot_class}</h3>
-      <h5>ID: {bots.id}</h5>
-      <h5>Health: {bots.health}</h5>
-      <h5>Damage: {bots.damage}</h5>
-      <h5>Armor: {bots.armor}</h5>
-      <hr />
-    </div>
-  )
+    if (!bot) return <div className="text-center mt-8">Loading...</div>;
+
+    return (
+        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="md:flex">
+                    <div className="md:flex-shrink-0">
+                        <img className="h-48 w-full object-cover md:w-48" src={bot.avatar_url} alt={bot.name} />
+                    </div>
+                    <div className="p-8">
+                        <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Bot Details</div>
+                        <h1 className="block mt-1 text-lg leading-tight font-medium text-black">{bot.name}</h1>
+                        <p className="mt-2 text-gray-500">Class: {bot.bot_class}</p>
+                        <div className="mt-4">
+                            <div className="flex items-center">
+                                <span className="text-gray-700 font-bold mr-2">ID:</span>
+                                <span className="text-gray-600">{bot.id}</span>
+                            </div>
+                            <div className="flex items-center mt-2">
+                                <span className="text-gray-700 font-bold mr-2">Health:</span>
+                                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div className="bg-green-600 h-2.5 rounded-full" style={{width: `${bot.health}%`}}></div>
+                                </div>
+                                <span className="ml-2">{bot.health}</span>
+                            </div>
+                            <div className="flex items-center mt-2">
+                                <span className="text-gray-700 font-bold mr-2">Damage:</span>
+                                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div className="bg-red-600 h-2.5 rounded-full" style={{width: `${bot.damage}%`}}></div>
+                                </div>
+                                <span className="ml-2">{bot.damage}</span>
+                            </div>
+                            <div className="flex items-center mt-2">
+                                <span className="text-gray-700 font-bold mr-2">Armor:</span>
+                                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div className="bg-blue-600 h-2.5 rounded-full" style={{width: `${bot.armor}%`}}></div>
+                                </div>
+                                <span className="ml-2">{bot.armor}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button></button>
+            </div>
+        </div>
+    )
 }
 
 export default BotDetails
