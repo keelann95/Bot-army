@@ -6,7 +6,7 @@ const BotDetails = () => {
     const { id } = useParams();
 
     useEffect(() => {
-      fetch(`https://army-bot-backend.vercel.app/bots/${id}`)
+      fetch(`  https://bot-backend-six.vercel.app/bots/${id}`)
         .then((res) => res.json())
         .then((data) => setBot(data))
         .catch((error) => console.log(error));
