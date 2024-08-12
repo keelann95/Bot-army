@@ -1,5 +1,7 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom"
+
 const Home = () => {
   return (
     <div className="relative bg-cover bg-center min-h-screen overflow-hidden flex items-center" 
@@ -15,9 +17,10 @@ const Home = () => {
           that will allow a user to browse through a list of robots, view a robot's details, and enlist a bot into their army.
         </p>
         <div className="mt-12">
-          <a href="/botCollection" className="px-8 py-4 bg-yellow-600 text-white font-bold text-lg rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out transform  hover:scale-110">
+          <Link to='/botCollection'>  <button className="px-8 py-4 bg-yellow-600 text-white font-bold text-lg rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out transform  hover:scale-110">
             Explore Bots
-          </a>
+          </button></Link>
+        
         </div>
       </div>
     </div>
